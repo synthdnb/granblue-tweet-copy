@@ -2,8 +2,8 @@
   "manifest_version": 2,
 
   "name": "Granblue Tweetdeck Copier",
-  "description": "Copies first granblue tweet id",
-  "version": "1.0",
+  "description": "Copies clicked granblue tweet id",
+  "version": "1.1",
   "icons": { "16": "copy-icon.png",
            "48": "copy-icon.png",
           "128": "copy-icon.png" },
@@ -16,6 +16,12 @@
     "scripts": ["background.js"],
     "persistent": true
   },
+  "content_scripts": [
+    {
+      "matches": ["https://tweetdeck.twitter.com/*"],
+      "js": ["click_hook.js"]
+    }
+  ],
   "permissions": [
     "activeTab",
     "https://tweetdeck.twitter.com/",
