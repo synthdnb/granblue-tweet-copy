@@ -8,6 +8,8 @@ var cl = function(ev){
       if(match = re.exec(cnode.textContent)) {
         var st = text.indexOf(match[1]);
         var ed = st+8;
+
+        ev.target.style.webkitUserSelect = "text"
         var range = document.createRange();
         range.setStart(cnode,st);
         range.setEnd(cnode,ed);
@@ -15,11 +17,11 @@ var cl = function(ev){
         selection.removeAllRanges();
         selection.addRange(range);
         chrome.runtime.sendMessage({data: "data"});
-
         var success = document.execCommand('copy');  
         chrome.runtime.sendMessage({title: range.toString(), message: text}, function(){});
         ev.stopPropagation();
         ev.preventDefault();
+        ev.target.style.webkitUserSelect = ""
         return false;
       }
     }
