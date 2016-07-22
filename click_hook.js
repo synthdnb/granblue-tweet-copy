@@ -1,13 +1,12 @@
 
 var cl = function(ev){
-  var re = /ID：(\w+)/;
+  var re = /ID(?:: |：)(\w+)/;
   if(ev.target.nodeName.toLowerCase() == "p" && ev.target.classList.contains('tweet-text')) {
     for(var i in ev.target.childNodes) {
       var cnode = ev.target.childNodes[i];
       var text = cnode.textContent;
       if(match = re.exec(cnode.textContent)) {
-        var pos = re.exec(text).index;
-        var st = pos+3;
+        var st = text.indexOf(match[1]);
         var ed = st+8;
         var range = document.createRange();
         range.setStart(cnode,st);
